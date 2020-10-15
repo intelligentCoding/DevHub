@@ -7,6 +7,9 @@ connectDB();
 //Just testing if the express server is running.
 app.get("/", (req, res) => res.send("API running"));
 
+//We have to initilize the middleware for body parser
+app.use(express.json({extended: false}))
+
 //we will define our routes here
 app.use("/api/users", require("./routes/api/users"));
 app.use("/api/auth", require("./routes/api/auth"));
