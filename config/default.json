@@ -1,4 +1,7 @@
 {
     "mongoURI": "mongodb+srv://kashjee:kasjee4ujee@devconnectorcluster.uudno.mongodb.net/<dbname>?retryWrites=true&w=majority",
-    "jwtSecret": "mysecrettoken"
+    "jwtSecret": "mysecrettoken",
+    "githubClientId":"1400be776e7f1aaba253",
+    "githubSecret": "75c4dd4d7f5c2e3fbdf68fa700d6c3ef2778ff7b",
+    "githubToken":"924f743cc6738c0ce791a39114d6e663a0b80c31"
 }
