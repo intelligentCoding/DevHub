@@ -196,29 +196,31 @@ router.post(
 );
 
 // @route    DELETE api/posts/comment/:id/:comment_id
-// @desc     Delete comment
-// @access   Private
+// @desc     delete the comment posted on a post. 
+// @access   private
 router.delete("/comment/:id/:comment_id", auth, async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
 
-    // Pull out comment
+    // pull the comments from all the coments in the post
     const comment = post.comments.find(
       (comment) => comment.id === req.params.comment_id
     );
-    // Make sure comment exists
+    // we need to make sure comment exists.
     if (!comment) {
       return res.status(404).json({ msg: "Comment does not exist" });
     }
-    // Check user
+    // make sure user of this comment is the user loged in
     if (comment.user.toString() !== req.user.id) {
       return res.status(401).json({ msg: "User not authorized" });
     }
 
+    //make a new object for comments without the comment that needs to be deleted. 
     post.comments = post.comments.filter(
       ({ id }) => id !== req.params.comment_id
     );
 
+    //save the post with new comments. 
     await post.save();
 
     return res.json(post.comments);
