@@ -6,6 +6,9 @@ import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import {BrowserRouter as Router, Route, Switch } from 'react-router-dom'; 
 
+//import alerts
+import Alert from './components/layout/alert';
+
 //stuff we need for redex
 import {Provider } from 'react-redux';
 import store from './store';
@@ -19,6 +22,8 @@ const App = () => (
       <Route exact path='/' component={Landing}/>
       {/* //we want to have section with class name container because every page has container class around it except landing page. */}
       <section className="container">
+        <Alert/>
+        {/* switch can only have routes. */}
         <Switch>
         <Route exact path='/register' component={Register} />
         <Route exact path='/login' component={Login} />
