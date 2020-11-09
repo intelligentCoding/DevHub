@@ -31,16 +31,9 @@ import {
             loading: false
             };
         case REGISTER_FAIL:
-            localStorage.removeItem('token');
-            return {
-                ...state,
-                token: null,
-                isAuthenticated: true,
-                loading: false,
-            };
         case AUTH_ERROR:
-        case USER_LOADED:
         case LOGIN_FAIL:
+        case LOGOUT:
             localStorage.removeItem('token');
             return {
                 ...state,
@@ -48,6 +41,13 @@ import {
                 isAuthenticated: false,
                 loading: false,
             };
+        case USER_LOADED:
+            return {
+                ...state,
+                isAuthenticated: true,
+                loading: false,
+                user: payload,
+            }
         case LOGIN_SUCCESS:
             //set token in local storage
             localStorage.setItem('token', payload.token);
