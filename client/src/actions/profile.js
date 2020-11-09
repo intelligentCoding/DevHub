@@ -4,7 +4,8 @@ import {setAlert } from './alert';
 
 import {
     GET_PROFILE,
-    PROFILE_ERROR
+    PROFILE_ERROR,
+    UPDATE_PROFILE
 } from './types';
 
 //Get signed in user's profile
@@ -66,7 +67,7 @@ export const createProfile = (formData, history, edit = false)=> async dispatch 
     };
 
 //Add education action
-export const addExperience = (formData, histor)=> async dispatch => {
+export const addExperience = (formData, history)=> async dispatch => {
     try {
         const config = {
             headers: {
@@ -107,7 +108,7 @@ export const addExperience = (formData, histor)=> async dispatch => {
 }
 
 //Add experience action
-export const addExperience = (formData, histor)=> async dispatch => {
+export const addEducation = (formData, history)=> async dispatch => {
     try {
         const config = {
             headers: {
