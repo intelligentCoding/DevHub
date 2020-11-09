@@ -10,6 +10,8 @@ import Dashboard from './components/dashboard/Dashboard';
 import Alert from './components/layout/alert';
 
 import PrivateRoute from './components/routing/PrivateRoute';
+
+import EditProfile from './components/profile-forms/EditProfile';
 import CreateProfile from './components/profile-forms/CreateProfile';
 //stuff we need for redex
 import {Provider } from 'react-redux';
@@ -45,6 +47,7 @@ const App = () => {
         <Route exact path='/login' component={Login} />
         <PrivateRoute exact path='/dashboard' component={Dashboard} />
         <PrivateRoute exact path='/create-profile' component={CreateProfile} />
+        <PrivateRoute exact path='/edit-profile' component={EditProfile} />
         </Switch>
       </section>
     </Fragment>

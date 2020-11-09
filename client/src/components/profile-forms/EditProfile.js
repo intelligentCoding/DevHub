@@ -1,10 +1,12 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import {connect } from 'react-redux';
 import {Link, withRouter } from 'react-router-dom';
-import {createProfile } from '../../actions/profile';
+import {createProfile, getCurrentProfile } from '../../actions/profile';
 
-const CreateProfile = ({createProfile, history}) => {
+const EditProfile = ({profile: { profile, loading}, 
+    createProfile, getCurrentProfile ,history}) => 
+    {
     const [formData, setFormData] = useState({
         company: '',
         website: '',
@@ -23,6 +25,21 @@ const CreateProfile = ({createProfile, history}) => {
     //social inputs display
     const [displaySocialInputs, toggleSocialInputs] = useState(false);
 
+    useEffect(() => {
+        getCurrentProfile();
+        if (!loading && profile) {
+            const profileData = { ...formData };
+            for (const key in profile) {
+              if (key in profileData) profileData[key] = profile[key];
+            }
+            for (const key in profile.social) {
+              if (key in profileData) profileData[key] = profile.social[key];
+            }
+            if (Array.isArray(profileData.skills))
+              profileData.skills = profileData.skills.join(', ');
+            setFormData(profileData);
+          }
+    }, [getCurrentProfile])
     const {
         company,
         website,
@@ -40,7 +57,7 @@ const CreateProfile = ({createProfile, history}) => {
     const onChange = e => setFormData({...formData, [e.target.name]  : e.target.value});
     const onSubmit = e => {
         e.preventDefault();
-        createProfile(formData, history);
+        createProfile(formData, history, true);
     }
     return <Fragment>
         <h1 className="large text-primary">
@@ -189,10 +206,18 @@ const CreateProfile = ({createProfile, history}) => {
         }
         <input type="submit" className="btn btn-primary my-1" />
         <Link className="btn btn-light my-1" to="/dashboard">Go Back</Link>
-
         </form>
     </Fragment>
 }
-CreateProfile.propTypes = {};
+EditProfile.propTypes = {
+    createProfile: PropTypes.func.isRequired,
+    profile: PropTypes.object.isRequired,
+    getCurrentProfile: PropTypes.func.isRequired,
+};
 
-export default connect(null, {createProfile})(withRouter(CreateProfile));
+const mapStateToProps = state =>({
+    profile: state.profile
+})
+export default connect(mapStateToProps, 
+{createProfile, getCurrentProfile})
+(withRouter(EditProfile));
