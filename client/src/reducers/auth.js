@@ -2,7 +2,9 @@ import {
     REGISTER_SUCCESS,
     REGISTER_FAIL,
     USER_LOADED,
-    AUTH_ERROR
+    AUTH_ERROR,
+    LOGIN_FAIL,
+    LOGIN_SUCCESS,
   } from '../actions/types';
   
   const initialState = {
@@ -38,7 +40,7 @@ import {
             return {
                 ...state,
                 token: null,
-                isAuthenticated: true,
+                isAuthenticated: false,
                 loading: false,
             };
         case USER_LOADED:
@@ -48,6 +50,22 @@ import {
                 loading: false,
                 user: payload,
             }
+        case LOGIN_SUCCESS:
+            //set token in local storage
+            localStorage.setItem('token', payload.token);
+            return {
+            ...state,
+            ...payload,
+            isAuthenticated: true,
+            loading: false
+            };
+        case LOGIN_FAIL:
+            return {
+                ...state,
+                token: null,
+                isAuthenticated: false,
+                loading: false,
+            };
         default:
             return state;
     }
