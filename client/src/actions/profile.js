@@ -64,3 +64,85 @@ export const createProfile = (formData, history, edit = false)=> async dispatch 
         });
         }
     };
+
+//Add education action
+export const addExperience = (formData, histor)=> async dispatch => {
+    try {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+        const res = await axios.put('api/profile/experience', formData, config);
+        dispatch({
+            type: UPDATE_PROFILE,
+            payload: res.data
+        });
+    
+        dispatch(setAlert(
+            'Education Added','success'
+            ));
+        
+        //redirect
+        history.push('/dashboard');
+        
+        } catch (err) {
+            const errorsToSet = err.response.data.errors;
+            // console.log("errors"+errorsToSet);
+            if(errorsToSet){
+                errorsToSet.forEach(element => {
+                    //here we dispathc alerts
+                    dispatch(setAlert(element.msg, 'danger'));
+                });
+            }
+    
+        dispatch({
+            type: PROFILE_ERROR,
+            payload: { 
+                msg: err.response.statusText, 
+                status: err.response.status 
+            }
+        });
+        }
+}
+
+//Add experience action
+export const addExperience = (formData, histor)=> async dispatch => {
+    try {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+        const res = await axios.put('api/profile/experience', formData, config);
+        dispatch({
+            type: UPDATE_PROFILE,
+            payload: res.data
+        });
+    
+        dispatch(setAlert(
+            'Experience Added', 'success'
+            ));
+        
+        //redirect
+        history.push('/dashboard');
+        
+        } catch (err) {
+            const errorsToSet = err.response.data.errors;
+            // console.log("errors"+errorsToSet);
+            if(errorsToSet){
+                errorsToSet.forEach(element => {
+                    //here we dispathc alerts
+                    dispatch(setAlert(element.msg, 'danger'));
+                });
+            }
+    
+        dispatch({
+            type: PROFILE_ERROR,
+            payload: { 
+                msg: err.response.statusText, 
+                status: err.response.status 
+            }
+        });
+        }
+}
