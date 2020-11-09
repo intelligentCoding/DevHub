@@ -1,8 +1,6 @@
 import React , { Fragment, useState} from 'react';
 import { Link, Redirect } from 'react-router-dom';
 
-
-
 const Register = () => {
     const [formData, setFormData ] = useState({
         name: '',

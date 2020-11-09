@@ -5,7 +5,14 @@ import Landing from './components/layout/Landing';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import {BrowserRouter as Router, Route, Switch } from 'react-router-dom'; 
+
+//stuff we need for redex
+import {Provider } from 'react-redux';
+import store from './store';
+
 const App = () => (
+  //wrape everything in Provider to get redux state to each component.
+  <Provider store={store}>
   <Router>
     <Fragment>
       <Navbar/>
@@ -19,6 +26,7 @@ const App = () => (
       </section>
     </Fragment>
   </Router>
+  </Provider>
 );
 
 export default App;
