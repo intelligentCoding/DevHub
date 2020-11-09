@@ -1,7 +1,10 @@
 import React , { Fragment, useState} from 'react';
 import { Link, Redirect } from 'react-router-dom';
-
-const Register = () => {
+import {connect} from 'react-redux';
+import {setAlert} from '../../actions/alert';
+const Register = ({setAlert}) => {
+  
+    //state using hooks
     const [formData, setFormData ] = useState({
         name: '',
         email: '',
@@ -13,16 +16,18 @@ const Register = () => {
     
     //on change function that get's called when we enter data 
     const onChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
+    
+    //when user clicks on register.
     const onSubmit = (e) =>{
         //prevent default behaviiour
         e.preventDefault();
-        console.log("hello")
         if(password !== password2){
-            console.log("Password do not match")
+            setAlert('Password do not match', 'danger')
         } else {
             console.log(formData)
         }
     }
+
     return (
         <Fragment>
         <h1 className="large text-primary">Sign Up</h1>
@@ -79,4 +84,4 @@ const Register = () => {
       </Fragment>
     );
 };
-export default Register;
+export default connect(null, {setAlert})(Register);
