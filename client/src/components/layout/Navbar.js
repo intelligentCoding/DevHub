@@ -9,11 +9,21 @@ const Navbar = ({ auth: {isAuthenticated, loading}, logout}) => {
     //these are the links for user loged in
     const authLinks = (
       <ul>
-        <a onClick={logout} href="#!">
-          <i className="fas fa-sign-out-alt"></i> { ' ' }
-          {/* hide logout text on small screen */}
-          <span className='hide-sm'>Logout</span>
-        </a>
+        <li>
+          <a onClick={logout} href="#!">
+            <i className="fas fa-sign-out-alt"></i> { ' ' }
+            {/* hide logout text on small screen */}
+            <span className='hide-sm'>Logout</span>
+          </a>
+        </li>
+        <li>
+          <Link to="/dashboard">
+            <i className="fas fa-user"></i> { ' ' }
+            {/* hide logout text on small screen */}
+            <span className='hide-sm'>Dashboard</span>
+          </Link>
+        </li>
+
     </ul>
 
     )
