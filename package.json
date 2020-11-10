@@ -8,7 +8,7 @@
     "server": "nodemon server",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild":"NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "Kashif Mahmood",
   "license": "MIT",
@@ -29,7 +29,8 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
     "request": "^2.88.2",
-    "uuid": "^8.3.1"
+    "uuid": "^8.3.1",
+    "normalize-url": "^5.0.0"
   },
   "devDependencies": {
     "concurrently": "^5.3.0",
