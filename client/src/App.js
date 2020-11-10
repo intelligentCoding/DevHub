@@ -22,6 +22,7 @@ import {Provider } from 'react-redux';
 import store from './store';
 import {loadUser} from './actions/auth';
 import setAuthToken from './utils/setAuthToken';
+import Profile from './components/profile/Profile';
 
 //if localstorage has the token we will set it in global headers.
 if(localStorage.token){
@@ -50,6 +51,7 @@ const App = () => {
         <Route exact path='/register' component={Register} />
         <Route exact path='/login' component={Login} />
         <Route exact path='/profiles' component={Profiles} />
+        <Route exact path='/profile/:id' component={Profile} />
         <PrivateRoute exact path='/dashboard' component={Dashboard} />
         <PrivateRoute exact path='/create-profile' component={CreateProfile} />
         <PrivateRoute exact path='/edit-profile' component={EditProfile} />

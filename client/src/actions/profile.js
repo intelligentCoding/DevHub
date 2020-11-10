@@ -10,6 +10,7 @@ import {
     CLEAR_PROFILE,
     GET_PROFILES,
     GET_REPOS,
+    NO_REPOS
 } from './types';
 
 //Get signed in user's profile
@@ -245,19 +246,24 @@ export const getProfileById = (userId) => async (dispatch) => {
         payload: res.data
       });
     } catch (err) {
-      dispatch({
-        type: PROFILE_ERROR,
-        payload: { msg: err.response.statusText, status: err.response.status }
-      });
+      const errorsToSet = err.response.data.errors;
+      // console.log("errors"+errorsToSet);
+      if(errorsToSet){
+          errorsToSet.forEach(element => {
+              //here we dispathc alerts
+              dispatch(setAlert(element.msg, 'danger'));
+          });
+      }
     }
   };
 
 //get github repos
 // Get Github repos
 export const getGithubRepos = (username) => async (dispatch) => {
+  console.log("hello")
     try {
         const res = await axios.get(`/api/profile/github/${username}`);
-
+        console.log(res)
         dispatch({
         type: GET_REPOS,
         payload: res.data
