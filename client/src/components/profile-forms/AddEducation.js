@@ -40,6 +40,7 @@ const AddEducationi = ({addEducation, history}) => {
             addEducation(formData, history);
           }}
         >
+          {/* School or bootcamp   */}
           <div className="form-group">
             <input
               type="text"
@@ -50,6 +51,8 @@ const AddEducationi = ({addEducation, history}) => {
               required
             />
           </div>
+
+          {/* Degree or certificate */}
           <div className="form-group">
             <input
               type="text"
@@ -60,6 +63,8 @@ const AddEducationi = ({addEducation, history}) => {
               required
             />
           </div>
+
+          {/* field of study */}
           <div className="form-group">
             <input
               type="text"
@@ -69,10 +74,14 @@ const AddEducationi = ({addEducation, history}) => {
               onChange={onChange}
             />
           </div>
+
+          {/* from date  */}
           <div className="form-group">
             <h4>From Date</h4>
             <input type="date" name="from" value={from} onChange={onChange} />
           </div>
+
+          {/* current school, if user is currently attending this school */}
           <div className="form-group">
             <p>
               <input
@@ -85,9 +94,10 @@ const AddEducationi = ({addEducation, history}) => {
                   toggleDisabled(!toDateDisabled);
                 }}
               />{' '}
-              Current Job
+              Current School
             </p>
           </div>
+          {/* to date */}
           <div className="form-group">
             <h4>To Date</h4>
             <input
@@ -98,6 +108,8 @@ const AddEducationi = ({addEducation, history}) => {
               disabled={current}
             />
           </div>
+
+          {/* Description of the deducation */}
           <div className="form-group">
             <textarea
               name="description"
@@ -108,6 +120,8 @@ const AddEducationi = ({addEducation, history}) => {
               onChange={onChange}
             />
           </div>
+
+          {/* submit button */}
           <input type="submit" className="btn btn-primary my-1" />
           <Link className="btn btn-light my-1" to="/dashboard">
             Go Back
