@@ -7,9 +7,10 @@ import { Link } from 'react-router-dom';
 import DashboardActions from './DashboardActions';
 import Experience from './Experience';
 import Education from './Education';
+import {deleteAccount} from '../../actions/profile';
 //spinner
 import Spinner from '../layout/spinner';
-const Dashboard = ({getCurrentProfile, auth: {user}, profile: {profile, loading}}) => {
+const Dashboard = ({getCurrentProfile, auth: {user}, deleteAccount,profile: {profile, loading}}) => {
     useEffect(() => {
         getCurrentProfile();
     }, [getCurrentProfile])
@@ -23,7 +24,13 @@ const Dashboard = ({getCurrentProfile, auth: {user}, profile: {profile, loading}
             <Fragment>
               <DashboardActions/>
               <Experience experience={profile.experience}/> 
-              <Education education={profile.education}/> 
+              <Education education={profile.education}/>
+              {/* here we add the option for users to delete account */}
+              <div className="my-2">
+                <button className="btn btn-danger" onClick={() => deleteAccount()}>
+                  <i className="fas fa-user-minus" /> Delete My Account
+                </button>
+              </div>
             </Fragment>
           ) : (
             <Fragment>
@@ -42,11 +49,12 @@ Dashboard.propTypes = {
     getCurrentProfile: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
     profile: PropTypes.object.isRequired,
+    deleteAccount: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
     auth: state.auth,
-    profile: state.profile
+    profile: state.profile,
 });
 
-export default connect(mapStateToProps, {getCurrentProfile})(Dashboard)
+export default connect(mapStateToProps, {getCurrentProfile,deleteAccount})(Dashboard)
