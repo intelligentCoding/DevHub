@@ -9,21 +9,20 @@ const Navbar = ({ auth: {isAuthenticated, loading}, logout}) => {
     //these are the links for user loged in
     const authLinks = (
       <ul>
-        <li>
-          <a onClick={logout} href="#!">
-            <i className="fas fa-sign-out-alt"></i> { ' ' }
-            {/* hide logout text on small screen */}
-            <span className='hide-sm'>Logout</span>
-          </a>
-        </li>
-        <li>
-          <Link to="/dashboard">
-            <i className="fas fa-user"></i> { ' ' }
-            {/* hide logout text on small screen */}
-            <span className='hide-sm'>Dashboard</span>
-          </Link>
-        </li>
-
+      <li><Link to="/profiles">Developers</Link></li>
+      <li><Link to="/posts">Posts</Link></li>
+      <li>
+        <a onClick={logout} href="#!">
+          <i className="fas fa-sign-out-alt"></i> { ' ' }
+          {/* hide logout text on small screen */}
+          <span className='hide-sm'>Logout</span>
+        </a>
+      </li>
+      <li><Link to="/dashboard">
+          <i className="fas fa-user"></i> { ' ' }
+          {/* hide logout text on small screen */}
+          <span className='hide-sm'>Dashboard</span>
+        </Link></li>
     </ul>
 
     )
@@ -32,6 +31,7 @@ const Navbar = ({ auth: {isAuthenticated, loading}, logout}) => {
     const guestLinks = (
       <ul>
         <li><Link to="/profiles">Developers</Link></li>
+        <li><Link to="/posts">Posts</Link></li>
         <li><Link to="/register">Register</Link></li>
         <li><Link to="/login">Login</Link></li>
       </ul>
