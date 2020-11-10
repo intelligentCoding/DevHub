@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import { deleteExperience } from '../../actions/profile';
+import { deleteExperience } from '../../actions/profile';
 import formatDate from '../../utils/formatDate';
 
 const Experience = ({ experience, deleteExperience }) => {
@@ -14,7 +14,7 @@ const Experience = ({ experience, deleteExperience }) => {
       </td>
       <td>
         <button
-        //   onClick={() => deleteExperience(exp._id)}
+          onClick={() => deleteExperience(exp._id)}
           className="btn btn-danger"
         >
           Delete
@@ -47,5 +47,4 @@ Experience.propTypes = {
 };
 
 export default connect(null, 
-    // { deleteExperience }
-    )(Experience);
+    { deleteExperience })(Experience);
